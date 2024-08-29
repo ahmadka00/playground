@@ -1,0 +1,11 @@
+
+<h1><%= @blog_post.title %></h1>
+<p>Author: <%= @blog_post.user.email %>
+<%= @blog_post.content %>
+<br><br>
+<% if @blog_post.cover_image.attached? %>
+<%= image_tag @blog_post.cover_image %>
+<% end %>
+<% if policy(@blog_post).edit? %>
+<%= link_to "Edit post", edit_blog_post_path(@blog_post) , class: "bg-blue-200 px-4 py-2 rounded-xl  hover:bg-gray-300" %>
+<% end %>

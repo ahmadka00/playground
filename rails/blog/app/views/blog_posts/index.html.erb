@@ -1,0 +1,21 @@
+<h1 class="text-3xl font-bold underline">
+    Hello world! In My Blog
+</h1>
+
+    <% @blog_posts.each do |blog_post| %>
+        <div>
+        <h2> <%= link_to blog_post.title, blog_post %> </h2>
+        <span><%= blog_post.user.email %>
+         <% if blog_post.draft? %>
+            <span class="p-2 rounded bg-gray-100 text-green-900">Draft</span>
+        <% elsif blog_post.scheduled? %>
+            <span class="p-2 rounded bg-yellow-200 text-green-900">Scheduled</span>
+        <% else %>
+            <span class="p-2 rounded bg-blue-200 text-green-900">Published</span>
+        <% end %>
+        <%= blog_post.content %>
+        </div>
+        <hr>
+    <% end %>
+
+<%== pagy_nav(@pagy) %>

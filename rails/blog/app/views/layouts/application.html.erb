@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Blog</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
+
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= javascript_importmap_tags %>
+    <script type="text/javascript" src="https://unpkg.com/trix@2.0.0/dist/trix.umd.min.js"></script>
+  </head>
+
+  <body class='prose mx-auto mb-16'>
+    <p class="notice"><%= notice %></p>
+    <p class="alert"><%= alert %></p>
+    <% if user_signed_in? %>
+      <%= link_to "Profile", edit_user_registration_path %>
+      <%= button_to "Log out", destroy_user_session_path, method: :delete %>
+      <%= link_to "Home", root_path %> <br>
+    <% else %>
+      <%= link_to "Log in", new_user_session_path %>
+      <%= link_to "Register", new_user_registration_path %>
+    <% end %>
+    
+    <% if policy(BlogPost.new).new? %>
+        <%= link_to "Add post", new_blog_post_path %>
+    <% end %>
+    
+    <%= yield %>
+  </body>
+</html>

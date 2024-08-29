@@ -1,0 +1,1 @@
+stylesheet_path = Pagy.root.join('stylesheets', 'pagy.tailwind.css')
